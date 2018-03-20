@@ -44,11 +44,12 @@ public class TroopMovement : MonoBehaviour
 		var b = rh.collider.GetComponent<Base> ();
 		var t = rh.collider.GetComponent<Troop> ();
 
-		if (b != null) {
+		if (b != null) { // DESTRUIMOS LA BASE
 			b.health -= damage;
 			if (b.health <= 0) {
 				//WINSTAT
-				print("Ganan los " + tr.faction);
+				GlobalGameManager.singleton.score += 1000;
+				GlobalGameManager.singleton.GoToScene ("Menu");
 			}
 
 

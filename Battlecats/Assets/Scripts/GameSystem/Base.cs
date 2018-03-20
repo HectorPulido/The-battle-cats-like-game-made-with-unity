@@ -12,7 +12,7 @@ public class Base : MonoBehaviour
 	public int money;
 	public int maxMoney = 200;
 	public int health;
-
+	public bool active;
 
 	public Text moneyTxt;
 
@@ -20,6 +20,11 @@ public class Base : MonoBehaviour
 
 	IEnumerator Start()
 	{
+		while (!active) {
+			yield return null;
+		
+		}
+
 		coolDowns = new float[troops.Length];
 		while (true) {
 			for (int i = 0; i < coolDowns.Length; i++) {
@@ -38,6 +43,9 @@ public class Base : MonoBehaviour
 
 	public void Instantiate(int id)
 	{
+		if (!active)
+			return;
+
 		if (troops [id].price > money)
 			return;
 		if (coolDowns [id] >= 0)

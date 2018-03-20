@@ -9,7 +9,7 @@ public class BaseController : MonoBehaviour
 	public CardButton cardButtonPrefab;
 
 
-	void Start () 
+	public void OnStart () 
 	{
 		for (int i = 0; i < baseToControll.troops.Length; i++) 
 		{
@@ -17,7 +17,9 @@ public class BaseController : MonoBehaviour
 			var go = Instantiate (cardButtonPrefab, layout);
 			go.SetCard (baseToControll.troops [i].Card, () => {
 				baseToControll.Instantiate(u);		
-			});
+			},
+				baseToControll.troops [i].price.ToString()
+			);
 			go.transform.position = Vector3.zero;
 		}	
 	}
